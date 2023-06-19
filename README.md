@@ -29,7 +29,9 @@
   <img src="https://github.com/hakseat/hakseat/assets/130421767/e7a5d963-6fe9-4400-bcb9-88ff8fa86b03">
 </p>
 
-
+<p align="center">
+  <img src="https://github.com/hakseat/hakseat/assets/130421767/a8cc5d95-127e-47b6-af04-10a690094b0d">
+</p>
 ## 관리자 화면(Front) 구성 🖥
 
 
