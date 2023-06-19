@@ -34,14 +34,14 @@
 </p>
 
 ## front 화면 구성 🖥
-<p align="center">
-  <img src="https://github.com/hakseat/hakseat/assets/130421767/28c41cd6-c8a8-4ebf-9536-cc68168129d0">
-</p>
+
 
 
 
 #### **성신여대 학식당 구현**
-
+<p align="center">
+  <img src="https://github.com/hakseat/hakseat/assets/130421767/28c41cd6-c8a8-4ebf-9536-cc68168129d0">
+</p>
 
 
 ​																				**(예시:수정관 학식당**)
