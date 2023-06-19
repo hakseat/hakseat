@@ -32,7 +32,11 @@
 <p align="center">
   <img src="https://github.com/hakseat/hakseat/assets/130421767/a8cc5d95-127e-47b6-af04-10a690094b0d">
 </p>
-## 관리자 화면(Front) 구성 🖥
+
+## front 화면 구성 🖥
+<p align="center">
+  <img src="https://github.com/hakseat/hakseat/assets/130421767/28c41cd6-c8a8-4ebf-9536-cc68168129d0">
+</p>
 
 
 
