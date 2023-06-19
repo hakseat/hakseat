@@ -26,7 +26,7 @@
 ## 아두이노 프로그래밍
 
 <p align="center">
-  <img src="[이미지URL](https://github.com/hakseat/hakseat/assets/130421767/e7a5d963-6fe9-4400-bcb9-88ff8fa86b03)">
+  <img src="https://github.com/hakseat/hakseat/assets/130421767/e7a5d963-6fe9-4400-bcb9-88ff8fa86b03">
 </p>
 
 
