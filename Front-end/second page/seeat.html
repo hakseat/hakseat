@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>학SEAT</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            margin:0px;
+            padding:0px;
+            background-color:white;
+            color:black;
+            overflow-x:hidden;
+        }
+
+        #header {
+            margin:0px;
+            padding:20px;
+            height:500px;
+            width:100%;
+            font-size: 3em;
+			text-align:left;
+			background-color:rgb(87, 91, 175);
+            color:white;
+            font-family:'Do Hyeon', sans-serif
+        }
+
+        /* header와 겹치기 위해 content_block들을 contents 안에 넣는 방식으로 작성하였습니다. */
+        #contents {
+            overflow:visible;
+            text-align:center;
+            width:100%;
+            height:100%;
+            background-color:rgba(255, 255, 255, 0);
+            color:black;
+			float:left;
+        }
+
+        #content_block {
+            width:90%;
+            height:40%;
+            border-radius:1em;
+            background-color:white;
+			border:1px solid black;
+            display:inline-block;
+            padding:20px;
+            margin-bottom:20px;
+            font-family: 'Jua', sans-serif;
+            
+            
+        }
+
+        #content_line {
+            text-align:center;
+        }
+
+        #content_line p {
+            font-size: 70px;
+        }
+
+    </style>
+    
+</head>
+    <!-- 폰트 링크 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Jua&display=swap" rel="stylesheet">
+    
+    
+    
+<body>
+    <div id="header" style="position: relative; z-index: 1">
+        <h2>학SEAT</h2>
+        <p style="line-height: 0"><b>성신여자대학교</b></p>
+        <p style="line-height: 7; font-size:40px"><b>&lt;수정관&gt;</b></p>
+    </div>
+    <div id="contents" style="position: absolute; top: 460px; z-index: 2">
+        <div id="content_block">
+            <div id="content_line">
+                <div>
+                <div class="section">
+                    <div class="slider">
+                        <div class="list">
+                            <div class="item">
+                                <p>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;어제의 학식&nbsp;&nbsp;&nbsp;&nbsp;
+                                </p>
+                            </div>
+                            <div class="item">
+                                <p>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;오늘의 학식&nbsp;&nbsp;&nbsp;&nbsp;
+                                </p>
+                            </div>
+                            <div class="item">
+                                <p>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;내일의 학식&nbsp;&nbsp;&nbsp;&nbsp;
+                                </p>
+                            </div>
+                        </div>
+                        <div class="buttons">
+                            <button id="prev"><</button>
+                            <button id="next">></button>
+                        </div>
+                        <ul class="dots">
+                            <li class="active"></li>
+                            <li></li>
+                            <li></li>     
+                        </ul>
+                    </div>     
+                </div>
+                </div>
+            </div>
+        </div>
+            <div id="content_block">
+                <div id="content_line">
+                    <p>
+                        빈 좌석 확인
+                    </p>   
+                </div>
+            </div>
+            <div id="content_block">
+                <div id="content_line">
+
+                    <p>
+                        별점 및 코멘트
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+        <script src="app.js"></script>
+</body>
+</html>
