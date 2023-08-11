@@ -40,10 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'content',
     'user',
-    'hakseat',
-    'front',
-    'seat'
-]
+    'hakseat'
+    ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
