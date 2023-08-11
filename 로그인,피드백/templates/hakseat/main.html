@@ -89,7 +89,7 @@
                 <a  href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                     <div  class="box" style="width: 25px;height:25px">
                         <img class="profile"
-                             src="{% get_media_prefix %}{{ user.profile_image }}">
+                              src="https://img.seoul.co.kr/img/upload/2018/08/29/SSI_20180829180156_O2.jpg">
                     </div>
                 </a>
 
@@ -106,7 +106,7 @@
 
 </nav>
 
-
+<!---여기서부터붙임--->
 <div style="display:flex; flex-direction: row;  text-align: center; justify-content: center;padding-top: 100px">
     <div style="display: flex;flex-direction: column">
         <div style="width:600px;min-width:600px; height:1000px">
@@ -136,26 +136,11 @@
 
                             </div>
 
-                          
+
                         </div>
                          <div style="margin-left: 20px;text-align: left;font-size: 12px"> 아이바오 <b>외 {{ feed.like_count }}명이 </b> 좋아합니다</div>
                         <div style="margin-left: 20px;text-align: left;font-size: 12px"> <b>{{ feed.nickname }} </b> {{ feed.content }} </div>
-                         <div id="reply_list_{{ feed.id }}">
-                             {% for reply in feed.reply_list %}
-                                 <div style="margin-left: 20px;text-align: left;font-size: 14px"><b>{{ reply.nickname }}</b>{{ reply.reply_content }}</div>
 
-                             {% endfor %}
-                         </div>
-
-
-
-
-                         <div style="display: flex; flex-direction: row;border-top: solid 1px gray;justify-content: center;align-items: center">
-                            <input id="reply_{{ feed.id }}" type="text" class="form-control" style="box-shadow: none" placeholder="댓글 달기..">
-                            <div feed_id="{{ feed.id }}" class="upload_reply"   style="width: 50px;color: mediumorchid;font-weight: bold">
-                                게시
-                            </div>
-                        </div>
                     </div>
 
                 {% endfor %}
@@ -163,6 +148,7 @@
             </div>
         </div>
         </div>
+    <!---여기까지--->
 
 
 
@@ -281,42 +267,6 @@
 
 
     })
-    $(".upload_reply").click(function(event){
-        let feed_id=event.target.attributes.getNamedItem('feed_id').value;
-        let reply_id='reply_'+feed_id;
-        let reply_content=$('#'+reply_id).val();
-
-        if(reply_content.length<=0){
-            alert("댓글을 입력하세요");
-            return 0;
-        }
-         $.ajax({
-            url:"/content/reply",
-            data:{
-                feed_id:feed_id,
-                reply_content:reply_content,
-
-            },
-            method:"POST",
-            success:function (data){
-                console.log("성공");
-                alert("댓글 성공");
-                $("#reply_list_"+feed_id).append("<div style='margin-left: 20px;text-align: left;font-size: 14px'><b>{{ user.nickname }}</b>"+reply_content+"</div>")
-                {#  location.replace('/main');#}
-            },
-            error:function(request,status,error){
-                console.log("에러")
-            },
-            complete:function(){
-                console.log("완료");
-                $('#'+reply_id).val('');
-
-            }
-        });
-
-
-    });
-
 
 
     $(".modal_close").click(function (){
@@ -344,17 +294,12 @@
         let file=files[0];
         let image=files[0].name;
         let content=$('#input_feed_content').val();
-        //let user_id="{{ user.nickname }}";
-        //let profile_image="{{ user.profile_image }}";
 
 
         let fd=new FormData();
         fd.append('file',file);
         fd.append('image',image);
         fd.append('content',content);
-        //fd.append('user_id',user_id);
-        //fd.append('profile_image',profile_image);
-
         /*폼데이터에 피드를 넣음*/
         $.ajax({
             url:"/content/upload",
