@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>학SEAT</title>
+    <style>
+        body {
+            margin:0px;
+            padding:0px;
+            background-color:white;
+            color:black;
+            overflow-x:hidden;
+        }
+
+        #header {
+            margin:0px;
+            padding:20px;
+            height:650px;
+            width:100%;
+            font-size: 3em;
+			text-align:left;
+			background-color:rgb(87, 91, 175);
+            color:white;
+            font-family:'Do Hyeon', sans-serif;
+        }
+
+        #header h2 {
+            margin-top:0;
+        }
+
+        #header_table {
+            margin:0px;
+            padding:20px;
+            height:650px;
+            width:100%;
+			background-color:rgb(87, 91, 175);
+        }
+
+        #header_table img {
+            margin-top:100px;
+            margin-left:1200px;
+        }
+        
+
+        /* header와 겹치기 위해 content_block들을 contents 안에 넣는 방식으로 작성하였습니다. */
+        #contents {
+            overflow:visible;
+            text-align:center;
+            width:100%;
+            height:100%;
+            background-color:rgba(255, 255, 255, 0);
+            color:black;
+			float:left;
+        }
+
+        #content_block {
+            width:90%;
+            height:33%;
+            border-radius:1em;
+            background-color:white;
+			border:1px solid black;
+            display:inline-block;
+            padding:20px;
+            margin-bottom:20px;
+            font-family: 'Jua', sans-serif;
+        }
+
+        #content_block a {
+			color:black;
+			text-decoration:none;
+            font-weight:bolder;
+        }
+
+        #content_line {
+            text-align:left;
+        }
+
+        #content_line h2 {
+            margin-left:30px;
+        }
+
+        #content_line p {
+            font-size: 20px;
+            margin-left:30px;
+        }
+
+        #content_line img {
+            margin-top:80px;
+            margin-right:100px;
+            float:right;
+        }
+
+    </style>
+</head>
+    <!-- 폰트 링크 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Jua&display=swap" rel="stylesheet">
+
+    <!-- 그림 링크 -->
+    <a href="https://www.flaticon.com/free-icons/meal" title="meal icons"></a>
+
+<body>
+    <table style="width: 100%">
+        <tr>
+            <td>
+                <div id="header" style="position: relative; z-index: 1; float: left">
+                    <img src="./logo.png" width="200px" height="200px">
+                    <h2>학SEAT</h2>
+                    <p style="line-height: 0"><b>성신여자대학교</b></p>
+                    <p style="line-height: 5; font-size:40px"><b>&lt;운영시간&gt;</b></p>
+                </div>
+            </td>
+            <td>
+                <div id="header_table">
+                    <img src="./suryong.png">
+                </div>
+            </td>
+        <tr>
+      </table>
+    <div id="contents" style="position: absolute; top: 600px; z-index: 2">
+        <div id="content_block">
+            <a href="./sujeong.html">
+                <table style="width: 100%">
+                    <tr>
+                        <td>
+                            <div id="content_line">
+                                <h2>&lt;수정관&gt;</h2>
+                                <p>
+                                    <b><br/>- 위치<br/>
+                                    수정관 A동 10층<br/><br/>
+                                    - 운영시간<br/>
+                                    중식 : 11:00~13:30<br/>
+                                    석식 : 17:00~18:30</b>
+                                <p>
+                            </div>
+                        </td>
+                        <td>
+                            <div id="content_line">
+                                <img src="./food1.png" style="width: 200px; height: 200px">
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </a>
+        </div>
+        <div id="content_block">
+            <a href="./nanhyang.html">
+                <table style="width: 100%">
+                    <tr>
+                        <td>
+                            <div id="content_line">
+                                <h2>&lt;난향관&gt;</h2>
+                                <p>
+                                    <b><br/>- 위치<br/>
+                                    난향관 3층<br/><br/>
+                                    - 운영시간<br/>
+                                    10:30~18:00<br/>
+                                    (오늘의 메뉴 : 11:00~16:00)</b>
+                                </p>
+                            </div>
+                        </td>
+                        <td>
+                            <div id="content_line">
+                                <img src="./food2.png" style="width: 200px; height: 200px">
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </a>
+        </div>
+        <div id="content_block">
+                <a href="./unjeong.html">
+                <table style="width: 100%">
+                    <tr>
+                        <td>
+                            <div id="content_line">
+                                <h2>&lt;운정캠&gt;</h2>
+                                <p>
+                                    <b><br/>- 위치<br/>
+                                    운정캠퍼스 P동 10층<br/><br/>
+                                    - 운영시간<br/>
+                                    11:30~14:00</b>
+                                </p>
+                            </div>
+                        </td>
+                        <td>
+                            <div id="content_line">
+                                <img src="./food3.png" style="width: 190px; height: 190px">
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
