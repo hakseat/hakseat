@@ -66,19 +66,19 @@
     </style>
     <title>학식 미완성</title>
 </head>
-<body>
+<body style="background-color: #cbb7d7">
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="position:fixed;width: 100%">
-    <div class="container-fluid" style="justify-content:space-between;flex-direction: row;flex-wrap:nowrap">
-        <a class="navbar-brand"  href="/main"><img style="width:75px"
+    <div class="container-fluid" style="justify-content:space-between;flex-direction: row;flex-wrap:nowrap;background-color: #7c7daf">
+        <a class="navbar-brand"  href="/content/frontmain"><img style="width:75px"
                                      src="https://postfiles.pstatic.net/MjAyMzA4MDNfMjg1/MDAxNjkxMDMxMzc1Mjk4.kmN3fxRhNqzI_g3gm6dOw6DrkR5AiI3i4WNqahzjcaQg._O9F6Ec6t4uZFdj9-JEsUoeldeB41Svp22r1dnfOVD8g.PNG.somin030805/sw_last_logo.png?type=w966"></a>
 
 
-        <input class="form-control me-2" style="width:400px" type="search" placeholder="Search" aria-label="Search">
+
         <div style="display: flex">
 
 
-            <a  href="/main" style="color: mediumpurple"><span class="material-icons" style="padding-right: 10px"  >home</span></a>
+            <a  href="/main" style="color: #cc99da"><span class="material-icons" style="padding-right: 10px"  >home</span></a>
             <span id="nav_bar_add_box" class="material-icons-outlined"style="padding-right: 10px">add_box</span>
 
 
@@ -89,7 +89,7 @@
                 <a  href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                     <div  class="box" style="width: 25px;height:25px">
                         <img class="profile"
-                             src="{% get_media_prefix %}{{ user.profile_image }}">
+                              src="https://img.seoul.co.kr/img/upload/2018/08/29/SSI_20180829180156_O2.jpg">
                     </div>
                 </a>
 
@@ -103,16 +103,18 @@
         </div>
 
     </div>
-    </div>
+
 </nav>
 
-
-<div style="display:flex; flex-direction: row;  text-align: center; justify-content: center;padding-top: 100px; background-color: aliceblue">
+<!---여기서부터붙임--->
+<div style="display:flex; flex-direction: row;  text-align: center; justify-content: center;padding-top: 100px">
     <div style="display: flex;flex-direction: column">
-        <div style="width:500px;min-width:500px; height:1000px; margin-right: 300px">
+        <div style="width:600px;min-width:600px; height:1000px">
+       <!---이거 두면 옆에 친구 목록 뜸margin-right: 300px--->
             <div style="border:solid 1px gray; background-color: white">
                 <!----여기서부터 피드박스--->
                 {% for feed in feeds %}
+
                     <div class="feed_box">
                      <div style="margin-bottom: 10px">
 
@@ -130,21 +132,15 @@
                         </div>
                         <div style="display: flex;flex-direction: row;justify-content: space-between;flex-direction: row">
                             <div style="margin-left: 20px; display: flex;flex-direction: row">
-                                <span class="material-icons-outlined">favorite_border</span>
+                                <span id="favorite_{{ feed.id}}" feed_id="{{ feed.id }}" class="favorite material-icons-outlined" style="color: red;cursor:pointer">{% if feed.is_liked %}favorite{% else %}favorite_border{% endif %}</span>
 
                             </div>
-                            <div>
-                                <span class="material-icons-outlined">bookmark_border</span>
-                            </div>
-                        </div>
-                        <div style="margin-left: 20px;text-align: left;font-size: 12px"> <b>{{ feed.user_id }} </b> {{ feed.content }} </div>
-                        <div style="margin-left: 20px;text-align: left;font-size: 12px"> 아이바오 <b>외 {{ feed.like_count }}명이 </b> 좋아합니다</div>
-                        <div style="margin-left: 20px;text-align: left;font-size: 14px"><b>i_bao</b> 너무 귀여워</div>
-                        <div style="margin-left: 20px;text-align: left;font-size: 14px"><b>somin</b> 생일 축하해</div>
 
-                        <div class="mb-3" style="display: flex; flex-direction: row">
-                            <input type="text" class="form-control" style="box-shadow: none" placeholder="댓글 달기..">
+
                         </div>
+                         <div style="margin-left: 20px;text-align: left;font-size: 12px"> 아이바오 <b>외 {{ feed.like_count }}명이 </b> 좋아합니다</div>
+                        <div style="margin-left: 20px;text-align: left;font-size: 12px"> <b>{{ feed.nickname }} </b> {{ feed.content }} </div>
+
                     </div>
 
                 {% endfor %}
@@ -152,6 +148,7 @@
             </div>
         </div>
         </div>
+    <!---여기까지--->
 
 
 
@@ -180,6 +177,9 @@
      </div>
         </div>
     </div>
+</div>
+
+
 
 <!--첫번째 모달--->
 <div id="first_modal" class="modal_overlay">
@@ -233,6 +233,42 @@
 </div>
 <!---자바스크립트; add box눌렀을때 반응--->
 <script>
+
+    $(".favorite").click(function(event){
+        let feed_id=event.target.attributes.getNamedItem('feed_id').value;
+        let favorite_id=event.target.id;
+        console.log(favorite_id);
+        let favorite_text=$.trim($('#'+favorite_id).html());
+        console.log(favorite_text);
+        if(favorite_text=='favorite') {
+            $('#' + favorite_id).html('favorite_border');
+        }else{
+            $('#' + favorite_id).html('favorite');
+        }
+
+        $.ajax({url:"/content/like",
+            data:{
+                feed_id:feed_id,
+                favorite_text:favorite_text,
+            },
+            method:"POST",
+            success:function (data){
+                console.log("성공");
+            },
+            error:function(request,status,error){
+                console.log("에러")
+            },
+            complete:function(){
+                console.log("완료");
+
+            }
+
+        })
+
+
+    })
+
+
     $(".modal_close").click(function (){
 
         $('#first_modal').css({
@@ -258,17 +294,12 @@
         let file=files[0];
         let image=files[0].name;
         let content=$('#input_feed_content').val();
-        let user_id="{{ user.nickname }}";
-        let profile_image="{{ user.profile_image }}";
 
 
         let fd=new FormData();
         fd.append('file',file);
         fd.append('image',image);
         fd.append('content',content);
-        fd.append('user_id',user_id);
-        fd.append('profile_image',profile_image);
-
         /*폼데이터에 피드를 넣음*/
         $.ajax({
             url:"/content/upload",
