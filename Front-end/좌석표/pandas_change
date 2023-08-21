@@ -1,0 +1,9 @@
+import pandas as pd
+
+# 엑셀 파일을 읽어서 DataFrame으로 변환
+xlsm_file = 'PLX-DAQ-v2.11.xlsm'
+df = pd.read_excel(xlsm_file, engine='openpyxl')
+
+# CSV 파일로 저장
+csv_file = 'csv_last.csv'
+df.to_csv(csv_file, index=False)
