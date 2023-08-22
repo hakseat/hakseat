@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Seat Status Update</title>
+</head>
+   <style>
+        body {
+            margin:0px;
+            padding:0px;
+            background-color:white;
+            color:black;
+            overflow-x:hidden;
+        }
+
+        #header {
+            margin:0px;
+            padding:20px;
+            height:650px;
+            width:100%;
+            font-size: 3em;
+         background-color:rgb(87, 91, 175);
+            margin-right: 450px;
+            color:white;
+            font-family:'Do Hyeon', sans-serif;
+        }
+
+        #header h2 {
+            margin-top:0;
+        }
+
+        #header_word {
+            margin:0px;
+            padding:20px;
+            height:650px;
+            width:100%;
+            font-size: 3em;
+         text-align:center;
+         background-color:rgb(87, 91, 175);
+            color:white;
+            font-family:'Do Hyeon', sans-serif;
+        }
+
+        #header_table {
+            margin:0px -80px;
+            padding:20px;
+            height:650px;
+            width:1100px;
+         background-color:rgb(87, 91, 175);
+        }
+
+        #header_table img {
+            margin-top:100px;
+            margin-left:500px;
+        }
+
+
+        /* header와 겹치기 위해 content_block들을 contents 안에 넣는 방식으로 작성하였습니다. */
+        #contents {
+            overflow:visible;
+            text-align:center;
+            width:100%;
+            height:100%;
+            background-color:rgba(255, 255, 255, 0);
+            color:black;
+         float:left;
+        }
+
+        #content_block {
+            width:90%;
+            height:60%;
+            border-radius:1em;
+            background-color:white;
+            border:1px solid black;
+            display:inline-block;
+            padding:20px;
+            margin-bottom:20px;
+            font-family: 'Jua', sans-serif;
+        }
+
+        #content_line {
+            text-align:left;
+        }
+
+        #content_line h2 {
+            margin-left:30px;
+        }
+
+        #content_line p {
+            font-size: 20px;
+            margin-left:30px;
+        }
+
+        #content_line img {
+            margin-top:80px;
+            margin-right:100px;
+            float:right;
+        }
+
+        #nav {
+         background-color:rgb(135, 152, 228);
+            border:2px solid black;
+         padding:20px 0;
+            width:100%;
+            text-align:center;
+            margin-bottom:10px;
+        }
+
+        #nav li {
+            margin-right:80px;
+            display:inline;
+            list-style:none;
+      }
+
+      #nav li a {
+         color:white;
+         text-decoration:none;
+            font-weight:bolder;
+            font-size:20px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .seatContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* 왼쪽 정렬 */
+        }
+
+        .row {
+            display: flex;
+            justify-content: flex-start; /* 왼쪽 정렬 */
+            margin-bottom: 10px;
+        }
+        .row + .row {
+            margin-top: 40px; /* 1번째 줄과 2번째 줄 간격을 40px로 설정 */
+        }
+        .round-seats {
+            display: flex;
+            justify-content: flex-start;
+            margin-bottom: 10px;
+        }
+        @media (max-width: 768px) {
+            .seats-container {
+                align-items: flex-start; /* 왼쪽 정렬 */
+            }
+
+            .row {
+                justify-content: flex-start; /* 왼쪽 정렬 */
+            }
+
+            .round-seats {
+                margin-top: 40px;
+            }
+        }
+
+        .round-seats .seat {
+            width: 34px;
+            height: 33px;
+            background-color: #ccc;
+            margin-right: 1px; /* 각 좌석 사이 간격 설정 */
+            cursor: pointer;
+            border-radius: 50%; /* 모서리를 둥글게 만들기 */
+        }
+
+        .round-seats .gap {
+            width: 40px; /* 5번째와 6번째 간격 크기 설정 */
+        }
+        .seat {
+            width: 40px;
+            height: 40px;
+            background-color: #ccc;
+            margin-right: 5px; /* 각 좌석 사이 간격 설정 */
+            cursor: pointer;
+        }
+
+        .gap {
+            width: 40px; /* 5번째와 6번째 간격 크기 설정 */
+        }
+
+        /* 좌석 클릭 시 보라색으로 변경 */
+        /* .seat.selected {
+            background-color: #9400D3;
+            color: #fff;
+        } */
+
+        .name-input-container {
+            margin-top: 20px;
+        }
+
+        #name-input {
+            padding: 5px;
+            margin-right: 10px;
+        }
+
+        #submit-btn {
+            padding: 5px 10px;
+        }
+    </style>
+
+<body>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Jua&display=swap" rel="stylesheet">
+
+    <!-- 그림 링크 -->
+    <a href="https://www.flaticon.com/free-icons/meal" title="meal icons"></a>
+
+
+    <table style="width: 100%">
+        <tr>
+            <td>
+                <div id="header" style="position: relative; z-index: 1; float: left">
+                    <a href="/content/frontmain"><img src="sw_last_logo.png" width="200px" height="200px">
+                   </a>
+                     <h2>학SEAT</h2>
+                    <p style="line-height: 0"><b>성신여자대학교</b></p>
+                    <p style="line-height: 5; font-size:40px"><b>&lt;난향관 좌석배치도&gt;</b></p>
+                </div>
+            </td>
+            <td>
+                <div id="header_table" style="margin-right: 20px">
+                    <img src="suryong.png">
+                </div>
+            </td>
+        </tr>
+      </table>
+    <div id="contents" style="position: absolute; top: 800px; z-index: 2">
+        <div id="nav">
+            <ul>
+                <li><a href="/content/frontmain">HOME</a></li>
+                <li><a href="index1">수정관</a></li>
+                <li><a href="index3">운정캠</a></li>
+            </ul>
+        </div>
+        <div id="contents" style="position: absolute; top: 200px; z-index: 2">
+            <div id="content_block">
+                <div id="content_line">
+                    <div style="width: 100%">
+                        <div class="seats" id="seatContainer">
+                        <div>
+                        <div class="row" id="seatContainer">
+                            <div class="seat" data-seat-number="A1"></div>
+                            <div class="seat" data-seat-number="A2"></div>
+                            <div class="seat" data-seat-number="A3"></div>
+                            <div class="seat" data-seat-number="A4"></div>
+                            <div class="seat" data-seat-number="A5"></div>
+                            <div class="seat" data-seat-number="A6"></div>
+                            <div class="gap"></div>
+                            <div class="gap"></div>
+                            <div class="seat" data-seat-number="A7"></div>
+                            <div class="seat" data-seat-number="A8"></div>
+                            <div class="seat" data-seat-number="A9"></div>
+                            <div class="seat" data-seat-number="A10"></div>
+                            <div class="seat" data-seat-number="A11"></div>
+                            <div class="seat" data-seat-number="A12" ></div>
+                            <div class="seat" data-seat-number="A13" ></div>
+                        </div>
+                        <div class="row"id="seatContainer">
+                            <div class="seat" data-seat-number="A14" ></div>
+                            <div class="seat" data-seat-number="A15" ></div>
+                            <div class="gap"></div>
+                                <div class="round-seats">
+                                    <div class="seat" data-seat-number="B1"></div>
+                                    <div class="seat" data-seat-number="B2"></div>
+                                </div>
+                                    <div class="gap"></div>
+                                    <div class="gap"></div>
+                                <div class="round-seats">
+                                    <div class="seat" data-seat-number="B3"></div>
+                                    <div class="seat" data-seat-number="B4"></div>
+                                </div>
+                                    <div class="gap"></div>
+                                    <div class="gap"></div>
+                                <div class="round-seats">
+                                    <div class="seat" data-seat-number="B5"></div>
+                                    <div class="seat" data-seat-number="B6"></div>
+                                </div>
+                                    <div class="gap"></div>
+                                    <div class="gap"></div>
+                                <div class="round-seats">
+                                    <div class="seat" data-seat-number="B7"></div>
+                                    <div class="seat" data-seat-number="B8"></div>
+                                </div>
+                        </div>
+                        </div>
+                        <div>
+                        <div class="row" id="seatContainer">
+                            <div class="seat" data-seat-number="A16"></div>
+                            <div class="seat" data-seat-number="A17"></div>
+                            <div class="gap"></div>
+                                <div class="round-seats">
+                                    <div class="seat" data-seat-number="B11"></div>
+                                    <div class="seat" data-seat-number="B12"></div>
+                                </div>
+                                    <div class="gap"></div>
+                                    <div class="gap"></div>
+                                <div class="round-seats">
+                                    <div class="seat" data-seat-number="B13"></div>
+                                    <div class="seat" data-seat-number="B14"></div>
+                                </div>
+                                    <div class="gap"></div>
+                                    <div class="gap"></div>
+                                <div class="round-seats">
+                                    <div class="seat" data-seat-number="B15"></div>
+                                    <div class="seat" data-seat-number="B16"></div>
+                                </div>
+                                    <div class="gap"></div>
+                                    <div class="gap"></div>
+                                <div class="round-seats">
+                                    <div class="seat" data-seat-number="B17"></div>
+                                    <div class="seat" data-seat-number="B18"></div>
+                        </div>
+                        </div>
+                        <div class="row" id="seatContainer">
+                            <div class="seat" data-seat-number="A18"></div>
+                            <div class="seat" data-seat-number="A19"></div>
+                            <div class="round-seats">
+                                <div class="gap"></div>
+                                <div class="round-seats">
+                                    <div class="seat" data-seat-number="B19"></div>
+                                    <div class="seat" data-seat-number="B20"></div>
+                                </div>
+                                    <div class="gap"></div>
+                                    <div class="gap"></div>
+                                <div class="round-seats">
+                                    <div class="seat" data-seat-number="B21"></div>
+                                    <div class="seat" data-seat-number="B22"></div>
+                                </div>
+                                    <div class="gap"></div>
+                                    <div class="gap"></div>
+                                <div class="round-seats">
+                                    <div class="seat" data-seat-number="B23"></div>
+                                    <div class="seat" data-seat-number="B24"></div>
+                                </div>
+                                    <div class="gap"></div>
+                                    <div class="gap"></div>
+                                <div class="round-seats">
+                                    <div class="seat" data-seat-number="B25"></div>
+                                    <div class="seat" data-seat-number="B26"></div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div>
+                        <div class="row" id="seatContainer">
+                            <div class="seat" data-seat-number="A20"></div>
+                            <div class="seat" data-seat-number="A21"></div>
+                            <div class="round-seats">
+                                <div class="gap"></div>
+                                <div class="round-seats">
+                                    <div class="seat" data-seat-number="B25"></div>
+                                    <div class="seat" data-seat-number="B26"></div>
+                                </div>
+                                    <div class="gap"></div>
+                                    <div class="gap"></div>
+                                <div class="round-seats">
+                                    <div class="seat" data-seat-number="B27"></div>
+                                    <div class="seat" data-seat-number="B28"></div>
+                                </div>
+                                    <div class="gap"></div>
+                                    <div class="gap"></div>
+                                <div class="round-seats">
+                                    <div class="seat" data-seat-number="B29"></div>
+                                    <div class="seat" data-seat-number="B30"></div>
+                                </div>
+                                    <div class="gap"></div>
+                                    <div class="gap"></div>
+                                <div class="round-seats">
+                                    <div class="seat" data-seat-number="B31"></div>
+                                    <div class="seat" data-seat-number="B32"></div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" id="seatContainer">
+                            <div class="seat" data-seat-number="A22"></div>
+                            <div class="seat" data-seat-number="A23"></div>
+                        </div>
+                        </div>
+                    </div>
+
+                    </div>
+                </div>
+            </table>
+        </div>
+    </div>
+<script>
+     const seatContainer = document.getElementById('seatContainer');
+const seatElements = seatContainer.querySelectorAll('.seat');
+
+// 초기 좌석 색상 설정
+seatElements.forEach(seat => {
+    seat.style.backgroundColor = 'darkseagreen';
+});
+
+function updateSeatColors() {
+    fetch('csv_last.csv')  // CSV 파일 경로
+        .then(response => response.text())
+        .then(data => {
+            const rows = data.split('\n');
+            rows.shift(); // 헤더 스킵
+
+            const lastRow = rows[rows.length - 1]; // 마지막 행
+            const columns = lastRow.split(',');
+            const sensorValues = columns.slice(1, 4).map(value => value.trim()); // 2번째부터 4번째 열의 값
+
+            // 예시: 센서 값에 따라 좌석 색상 변경
+            sensorValues.forEach((status, index) => {
+                const seatNumber = `B${index + 1}`;
+                const seatElement = seatContainer.querySelector(`[data-seat-number="${seatNumber}"]`);
+
+                if (status == '1') {
+                    seatElement.style.backgroundColor = 'red';
+                } else {
+                    seatElement.style.backgroundColor = 'blue';
+                }
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching CSV:', error);
+        });
+}
+
+        // 일정 간격으로 좌석 상태 업데이트
+        setInterval(updateSeatColors, 5000); // 5초마다 업데이트 (조정 가능)
+
+        // 초기 실행
+        updateSeatColors();
+
+    </script>
+</body>
+</html>

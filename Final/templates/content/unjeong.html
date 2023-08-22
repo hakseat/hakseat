@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>학SEAT</title>
+    <link rel="stylesheet" href="style.css">
+     <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load static %} <!--- 이걸해줘야 url에 http없어도 사진 업로드 가능--->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.rtl.min.css"
+          integrity="sha384-DOXMLfHhQkvFFp+rWTZwVlPVqdIhpDVYT9csOnHSgWQWPX0v5MCGtjCJbY6ERspU" crossorigin="anonymous">
+    <!-- Google bootstrap-->
+    <link
+            href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+            rel="stylesheet">
+    <!-- Jquery-->
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        /*스크롤*/
+          {
+            border: 1px solid black;
+            width:  250px;
+            margin-bottom: 12px;
+        }
+
+        { overflow-x: hidden;}
+        { overflow-x: scroll;}
+        { overflow-x: visible;}
+        { overflow-x: auto;}
+        /*스크롤*/
+         .box {
+            width: 150px;
+            height: 150px;
+            border-radius: 70%;
+            overflow: hidden
+        }
+
+        .profile {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        input:focus {
+            outline: none;
+            box-shadow: none
+        }
+
+        body {
+            margin:0px;
+            padding:0px;
+            background-color:white;
+            color:black;
+            overflow-x:hidden;
+        }
+
+        #header {
+            margin:0px;
+            padding:20px;
+            height:650px;
+            width:100%;
+            font-size: 3em;
+			text-align:left;
+			background-color:rgb(87, 91, 175);
+            color:white;
+            font-family:'Do Hyeon', sans-serif;
+        }
+
+        #header h2 {
+            font-size: 1.4em;
+            margin-top:0;
+            margin-bottom:60px;
+        }
+
+        /* header와 겹치기 위해 content_block들을 contents 안에 넣는 방식으로 작성하였습니다. */
+        #contents {
+            overflow:visible;
+            text-align:center;
+            width:100%;
+            height:100%;
+            background-color:rgba(255, 255, 255, 0);
+            color:black;
+			float:left;
+        }
+
+        #content_block {
+            width:90%;
+            height:33%;
+            border-radius:1em;
+            background-color:white;
+			border:1px solid black;
+            display:inline-block;
+            padding:20px;
+            margin-bottom:20px;
+            font-family: 'Jua', sans-serif;
+
+
+        }
+        #content_block_2{
+            width:90%;
+            height:50%;
+            border-radius:1em;
+            background-color:white;
+			border:1px solid black;
+            display:inline-block;
+            padding:20px;
+            margin-bottom:20px;
+            font-family: 'Jua', sans-serif;
+        }
+
+        #content_line {
+            text-align:center;
+        }
+
+        #content_line p {
+            font-size: 70px;
+        }
+        #content_line_p2 {
+            font-size: 30px;
+            text-align:center;
+        }
+         #nav {
+			background-color:rgb(135, 152, 228);
+            border:2px solid black;
+			padding:20px 0;
+            width:100%;
+            text-align:center;
+            margin-bottom:10px;
+        }
+
+        #nav li {
+            margin-right:80px;
+            display:inline;
+            list-style:none;
+		}
+
+		#nav li a {
+			color:white;
+			text-decoration:none;
+            font-weight:bolder;
+            font-size:20px;
+        }
+        .slider{
+            width: 280px;
+            max-width: 100vw;
+            height: 350px;
+            margin: auto;
+            position: relative;
+            overflow: hidden;
+            justify-content: center;
+        }
+        .slider .list{
+            position: absolute;
+            width: max-content;
+            height: 100%;
+            left: 0;
+            top: 0;
+            display: flex;
+            transition: 1s;
+            justify-content: center;
+        }
+        .slider .list img{
+            width: 1000px;
+            max-width: 100vw;
+            height: 100%;
+            object-fit: cover;
+        }
+        .slider .buttons{
+            position: absolute;
+            top: 45%;
+            left: 5%;
+            width: 90%;
+            display: flex;
+            justify-content: space-between;
+        }
+        .slider .buttons button{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #fff5;
+            color: #0c0000;
+            border: none;
+            font-family: monospace;
+            font-weight: bold;
+        }
+        .slider .dots{
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            color: #797979cd;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        .slider .dots li{
+            list-style: none;
+            width: 10px;
+            height: 10px;
+            background-color: #fff;
+            margin: 10px;
+            border-radius: 20px;
+            transition: 0.5s;
+        }
+        .slider .dots li.active{
+            width: 100px;
+        }
+        @media screen and (max-width: 768px){
+            .slider{
+                height: 400px;
+            }
+        }
+    </style>
+
+</head>
+    <!-- 폰트 링크 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Jua&display=swap" rel="stylesheet">
+
+
+
+<body>
+    <div id="header" style="position: relative; z-index: 1; float: left">
+        <a href="frontmain"><img src="https://postfiles.pstatic.net/MjAyMzA4MDNfMjg1/MDAxNjkxMDMxMzc1Mjk4.kmN3fxRhNqzI_g3gm6dOw6DrkR5AiI3i4WNqahzjcaQg._O9F6Ec6t4uZFdj9-JEsUoeldeB41Svp22r1dnfOVD8g.PNG.somin030805/sw_last_logo.png?type=w773" width="200px" height="200px"></a>
+        <h2><b>학SEAT</b></h2>
+        <p style="line-height: 0"><b>성신여자대학교</b></p>
+        <p style="line-height: 5; font-size:40px"><b>&lt;운정캠&gt;</b></p>
+    </div>
+    <div id="contents" style="position: absolute; top: 600px; z-index: 2">
+     <div id="nav" style="background-color: #cecea1">
+            <ul>
+                <li><a href="frontmain">HOME</a></li>
+                <li><a href="sujeong">수정관</a></li>
+                <li><a href="nanhyang">난향관</a></li>
+                <li><a href="/main">코멘트</a></li>
+            </ul>
+        </div>
+        <div id="content_block_2">
+            <div id="content_line_p2">
+                <div>
+                <div class="section">
+                    <div class="slider">
+                        <div class="list">
+                            <div class="item">
+                                <p>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt; 8월7일 월 &gt;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </p>
+                                백미밥<br>짬뽕국<br>볶음짜장면<br>모둠탕수육<br>짜사이무침<br>배추김치<br>
+                            </div>
+                            <div class="item">
+                                <p>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt; 8월8일 화 &gt;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </p>
+                                콩나물밥&부추양념장<br>얼간이된장국<br>새송이떡갈비구이<br>소세지볶음<br>마늘쫑무침<br>배추김치<br>
+                            </div>
+                            <div class="item">
+                                <p>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt; 8월9일 수 &gt;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </p>
+                                햄김치볶음밥<br>유부장국<br>치킨가스&크리미소스<br>매콤떡볶이<br>깍두기<br>아이스오미자차<br>
+                            </div>
+                            <div class="item">
+                                <p>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt; 8월10일 목 &gt;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </p>
+                                추가밥<br>김치말이국수<br>물만두<br>무생채<br>야채샐러드<br>배추김치<br>
+                            </div>
+
+                            <div class="item">
+                                <p>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt; 8월 11일 금 &gt;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </p>
+                                백미밥<br>어묵국<br>고추장불고기<br>두부조림<br>고추지무침<br>배추김치<br>
+                            </div>
+                        </div>
+                        <div class="buttons">
+                            <button id="prev"><</button>
+                            <button id="next">></button>
+                        </div>
+                        <ul class="dots">
+                            <li class="active"></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div id="content_block">
+          <a href="/my_web_project/index3" style="color: black;text-decoration: none">
+            <div id="content_line">
+                <p>
+                   -> 빈 좌석 확인 <-
+                </p>
+            </div>
+             </a>
+        </div>
+{#        <div id="content_block">#}
+{#            <div id="content_line">#}
+                <!---스크롤 시작--->
+    <div style="text-align: center;justify-content: center;margin-left: 75px">
+                <div style="border: 1px solid black; width: 1280px; height:500px; overflow-y: scroll;text-align: center;justify-content: center">
+
+<a href="/main" style="color: black;text-decoration: none">
+                        <!---여기서부터붙임--->
+                    <div style="display:flex; flex-direction: row;  text-align: center; justify-content: center">
+                        <div style="display: flex;flex-direction: column">
+                            <div style="width:800px;min-width:600px; height:1000px">
+                                <!---이거 두면 옆에 친구 목록 뜸margin-right: 300px--->
+                                <div style="border:solid 1px gray; background-color: white">
+                                    <!----여기서부터 피드박스--->
+                                    {% for feed in feeds %}
+
+                                        <div class="feed_box">
+                                        <div style="margin-bottom: 10px">
+
+                                            <div style="display: flex;flex-direction: row;align-items: center;flex-direction: row;margin-left: 20px">
+                                                <div class="box" style="width: 50px;height:50px">
+                                                    <img class="profile"
+                                                         src="{% get_media_prefix %}{{ feed.profile_image }}">
+                                                </div>
+                                                <div>
+                                                    {{ feed.nickname }}
+                                                </div>
+                                            </div>
+                                            <div><img style="width:100%"
+                                                      src="{% get_media_prefix %}{{ feed.image }}">
+                                            </div>
+                                            <div style="display: flex;flex-direction: row;justify-content: space-between;flex-direction: row">
+                                                <div style="margin-left: 20px; display: flex;flex-direction: row">
+                                                    <span id="favorite_{{ feed.id}}" feed_id="{{ feed.id }}" class="favorite material-icons-outlined" style="color: red;cursor:pointer">{% if feed.is_liked %}favorite{% else %}favorite_border{% endif %}</span>
+
+                                                </div>
+
+
+                                            </div>
+                                            <div style="margin-left: 20px;text-align: left;font-size: 12px"> 아이바오 <b>외 {{ feed.like_count }}명이 </b> 좋아합니다</div>
+                                            <div style="margin-left: 20px;text-align: left;font-size: 12px"> <b>{{ feed.nickname }} </b> {{ feed.content }} </div>
+
+                                        </div>
+
+                                    {% endfor %}
+                                    <!----여기까지 피드박스-->
+                                    </div>
+                                </div>
+                            </div>
+                            <!---여기까지--->
+
+
+                        </div>
+                        <!---스크롤 끝--->
+
+
+</a>
+                    </div>
+                </div>
+    </div>
+{#            </div>#}
+{#    </div>#}
+    </div>
+    <script>
+        let slider = document.querySelector('.slider .list');
+        let items = document.querySelectorAll('.slider .list .item');
+        let next = document.getElementById('next');
+        let prev = document.getElementById('prev');
+        let dots = document.querySelectorAll('.slider .dots li');
+
+        let lengthItems = items.length - 1;
+        let active = 0;
+        next.onclick = function(){
+            active = active + 1 <= lengthItems ? active + 1 : 0;
+            reloadSlider();
+        }
+        prev.onclick = function(){
+            active = active - 1 >= 0 ? active - 1 : lengthItems;
+            reloadSlider();
+        }
+        let refreshInterval = setInterval(()=> {next.click()}, 3000);
+        function reloadSlider(){
+            slider.style.left = -items[active].offsetLeft + 'px';
+            //
+            let last_active_dot = document.querySelector('.slider .dots li.active');
+            last_active_dot.classList.remove('active');
+            dots[active].classList.add('active');
+
+            clearInterval(refreshInterval);
+            refreshInterval = setInterval(()=> {next.click()}, 3000);
+
+
+        }
+
+        dots.forEach((li, key) => {
+            li.addEventListener('click', ()=>{
+                 active = key;
+                 reloadSlider();
+            })
+        })
+        window.onresize = function(event) {
+            reloadSlider();
+        };
+    </script>
+</body>
+</html>
