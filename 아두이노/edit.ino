@@ -1,40 +1,31 @@
-/*
- * very basic sketch for PLX DAQ test
- * for new "Version 2" of PLX DAQ
- */
-
-int i = 0;
-int pirPin = D7;
-int val;
+int pirPins[] = {D5, D6, D7};  // 배열로 여러 개의 PIR 핀을 관리
+int numPirs = sizeof(pirPins) / sizeof(pirPins[0]);  // 사용된 PIR 센서의 개수
+int vals[3];  // PIR 센서의 상태를 저장하는 배열
 
 void setup() {
+  Serial.begin(9600);
+  Serial.println("CLEARDATA");
+  Serial.println("LABEL,Time,Sensor 1,Sensor 2,sensor 3");
 
-  // open serial connection
-    Serial.begin(9600);
-
-  // define 2 rows: first named "Counter", second named "millis"
-    Serial.println("CLEARDATA");
-    Serial.println("LABEL,Time,Number,Sense");
+  for (int i = 0; i < numPirs; i++) {
+    pinMode(pirPins[i], INPUT);
+  }
 }
 
 void loop() {
-val = digitalRead(pirPin);
-//low = no motion, high = motion
-if (val == LOW)
-{
-  Serial.println("No motion");
-}
-else
-{
-  Serial.println("Motion detected  ALARM");
-}
+  Serial.print("DATA,TIME");
 
-delay(1000);
+  for (int i = 0; i < numPirs; i++) {
+    vals[i] = digitalRead(pirPins[i]);
 
+    Serial.print(",");
+    if (vals[i] == LOW) {
+      Serial.print("0");  // No motion일 때 0 출력
+    } else {
+      Serial.print("1");  // Motion detected일 때 1 출력
+    }
+  }
 
-  // simple print out of number and millis
-  // output "DATA,TIME,4711,13374"
-    Serial.print("DATA,TIME,");
-    Serial.print(i); Serial.print(",");
-    Serial.println("No motion");
+  Serial.println();
+  delay(1000);
 }
