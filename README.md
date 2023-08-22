@@ -34,7 +34,7 @@
 
 ## front 화면 구성 🖥
 <p align="center">
-  <img src="https://github.com/hakseat/hakseat/assets/130421767/5bbc1c81-e2a3-4070-9664-3a30446d8adf">
+  <img src="https://github.com/hakseat/hakseat/blob/main/Front-end/%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%94%EB%93%9C.png?raw=true">
 </p>
 
 
