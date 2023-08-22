@@ -41,7 +41,7 @@
 
 #### **성신여대 학식당 구현**
 <p align="center">
-  <img src="https://github.com/hakseat/hakseat/assets/130421767/28c41cd6-c8a8-4ebf-9536-cc68168129d0">
+  <img src="https://github.com/hakseat/hakseat/blob/main/Front-end/%EC%A2%8C%EC%84%9D%ED%91%9C.png?raw=true">
 </p>
 
 
